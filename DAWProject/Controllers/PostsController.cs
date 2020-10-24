@@ -22,17 +22,17 @@ namespace DAWProject.Controllers
         // GET implicit - Vizualizarea unei postari
         public ActionResult Show(int id)
         {
-            //try
-           // {
+            try
+           {
                 //ViewBag.Post = db.Posts.Include("Category").Find(id);
                 ViewBag.Post = db.Posts.Include("Category").First(p => p.post_id == id);
                 return View();
-            //}
-            //catch(Exception e)
-            //{
-                //ViewBag.ErrorMessage = e.Message;
-                //return View("Error");
-            //}
+            }
+            catch(Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View("Error");
+            }
         }
 
         // CREATE

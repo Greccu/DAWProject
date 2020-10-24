@@ -182,9 +182,12 @@
     <Content Include="Views\Posts\Show.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Error.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Error.cshtml" />
+    <Content Include="Views\Categories\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Categories\" />
     <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
