@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Post</h2>
+<form method="post" action="/Posts/New">
+    <label>Title</label>
+    <input type="text" name="title" />
+    <br />
+    <label>Content</label>
+    <textarea name="content"></textarea>
+    <br />
+    <input type="hidden" name="created_at" value="@DateTime.Now" />
+    <br />
+    <label>Select Category</label>
+    <select name="category_id">
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option value="@category.category_id">
+                @category.category_name
+            </option>
+        }
+    </select>
+    <br />
+    <button type="submit">Submit</button>
+</form>
+<input type="button" value="Back" onclick="location.href='/Posts/Index'" />
+

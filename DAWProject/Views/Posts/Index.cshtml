@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Category</h2>
+
+@foreach (var post in ViewBag.Posts)
+{
+    <h1>@post.title</h1>
+    <p>@post.content</p>
+    <p>@post.created_at</p>
+    <p>@post.Category.category_name</p>
+    <input type="button" value="Show Post" onclick="location.href='/Posts/Show/@post.post_id'" />
+}
+<br />
+<br />
+<input type="button" value="Create Post" onclick="location.href='/Posts/New'" />
