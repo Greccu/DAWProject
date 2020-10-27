@@ -194,9 +194,7 @@
     <Content Include="Views\Categories\Error.cshtml" />
     <Content Include="Views\Categories\New.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
