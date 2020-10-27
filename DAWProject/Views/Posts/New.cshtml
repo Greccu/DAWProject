@@ -5,19 +5,19 @@
 <h2>Create Post</h2>
 <form method="post" action="/Posts/New">
     <label>Title</label>
-    <input type="text" name="title" />
+    <input type="text" name="Title" />
     <br />
     <label>Content</label>
-    <textarea name="content"></textarea>
+    <textarea name="Content"></textarea>
     <br />
-    <input type="hidden" name="created_at" value="@DateTime.Now" />
+    <input type="hidden" name="Created_at" value="@DateTime.Now" />
     <br />
     <label>Select Category</label>
-    <select name="category_id">
+    <select name="Category_id">
         @foreach (var category in ViewBag.Categories)
         {
-            <option value="@category.category_id">
-                @category.category_name
+            <option value="@category.Category_id">
+                @category.Category_name
             </option>
         }
     </select>

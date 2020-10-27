@@ -5,28 +5,28 @@
 
 <h2>Edit Post</h2>
 
-<form method="post" action="/Posts/Edit/@ViewBag.Post.post_id">
+<form method="post" action="/Posts/Edit/@ViewBag.Post.Post_id">
     @Html.HttpMethodOverride(HttpVerbs.Put)
     <label>Title</label>
-    <input type="text" value="@ViewBag.Post.title" name="title" />
+    <input type="text" value="@ViewBag.Post.Title" name="title" />
     <br />
     <label>Content</label>
-    <textarea name="content">@ViewBag.Post.content</textarea>
+    <textarea name="Content">@ViewBag.Post.Content</textarea>
     <br />
     <label>Select Category</label>
-    <select name="category_id">
+    <select name="Category_id">
         @foreach (var category in ViewBag.Categories)
         {
-            if (@category.category_id == @ViewBag.Post.Category.category_id)
+            if (@category.Category_id == @ViewBag.Post.Category.Category_id)
             {
-                <option value="@category.category_id" selected="selected">
-                    @category.category_name
+                <option value="@category.Category_id" selected="selected">
+                    @category.Category_name
                 </option>
             }
             else
             {
-                <option value="@category.category_id">
-                    @category.category_name
+                <option value="@category.Category_id">
+                    @category.Category_name
                 </option>
             }
         }

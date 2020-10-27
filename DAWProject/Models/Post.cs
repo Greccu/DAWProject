@@ -10,22 +10,17 @@ namespace DAWProject.Models
     public class Post
     {
         [Key]
-        public int post_id { get; set; }
+        public int Post_id { get; set; }
         [Required]
-        public string title { get; set; }
-        public string content { get; set; }
-        public DateTime created_at { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public DateTime Created_at { get; set; }
         //fks
-        public int category_id { get; set; }
+        public int Category_id { get; set; }
         //public int id {get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 
-    public class PostDBContext : DbContext
-    {
-        public PostDBContext() : base("DBConnectionString") { }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Category> Categories { get; set; }
-    }
 }

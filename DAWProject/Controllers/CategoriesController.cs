@@ -11,7 +11,7 @@ namespace DAWProject.Controllers
     public class CategoriesController : Controller
     {
 
-        private CategoryDBContext db = new CategoryDBContext();
+        private Models.AppContext db = new Models.AppContext();
 
         // GET: Category
         public ActionResult Index()
@@ -47,7 +47,7 @@ namespace DAWProject.Controllers
         public ActionResult Edit(int id)
         {
             //ViewBag.Post = db.Posts.Include("Category").Find(id);
-            ViewBag.Category = db.Categories.First(c => c.category_id == id);
+            ViewBag.Category = db.Categories.First(c => c.Category_id == id);
             return View();
         }
 
@@ -57,10 +57,10 @@ namespace DAWProject.Controllers
             try
             {
                 //Post post = db.Posts.Include("Category").Find(id);
-                Category category = db.Categories.First(c => c.category_id == id);
+                Category category = db.Categories.First(c => c.Category_id == id);
                 if (TryUpdateModel(category))
                 {
-                    category.category_name = requestcat.category_name;
+                    category.Category_name = requestcat.Category_name;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
@@ -79,7 +79,7 @@ namespace DAWProject.Controllers
             try
             {
                 //Post post = db.Posts.Include("Category").Find(id);
-                Category category = db.Categories.First(c => c.category_id == id);
+                Category category = db.Categories.First(c => c.Category_id == id);
                 db.Categories.Remove(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");

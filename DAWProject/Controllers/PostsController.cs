@@ -9,7 +9,7 @@ namespace DAWProject.Controllers
 {
     public class PostsController : Controller
     {
-        private PostDBContext db = new PostDBContext();
+        private Models.AppContext db = new Models.AppContext();
 
         // GET: Posts
         public ActionResult Index()
@@ -25,7 +25,7 @@ namespace DAWProject.Controllers
             try
            {
                 //ViewBag.Post = db.Posts.Include("Category").Find(id);
-                ViewBag.Post = db.Posts.Include("Category").First(p => p.post_id == id);
+                ViewBag.Post = db.Posts.Include("Category").First(p => p.Post_id == id);
                 return View();
             }
             catch(Exception e)
@@ -64,7 +64,7 @@ namespace DAWProject.Controllers
         public ActionResult Edit(int id)
         {
             //ViewBag.Post = db.Posts.Include("Category").Find(id);
-            ViewBag.Post = db.Posts.Include("Category").First(p => p.post_id == id);
+            ViewBag.Post = db.Posts.Include("Category").First(p => p.Post_id == id);
             var categories = from category in db.Categories
                              select category;
             ViewBag.Categories = categories;
@@ -77,12 +77,12 @@ namespace DAWProject.Controllers
             try
             {
                 //Post post = db.Posts.Include("Category").Find(id);
-                Post post = db.Posts.Include("Category").First(p => p.post_id == id);
+                Post post = db.Posts.Include("Category").First(p => p.Post_id == id);
                 if (TryUpdateModel(post))
                 {
-                    post.title = requestpost.title;
-                    post.content = requestpost.content;
-                    post.category_id = requestpost.category_id;
+                    post.Title = requestpost.Title;
+                    post.Content = requestpost.Content;
+                    post.Category_id = requestpost.Category_id;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
@@ -101,7 +101,7 @@ namespace DAWProject.Controllers
             try
             {
                 //Post post = db.Posts.Include("Category").Find(id);
-                Post post = db.Posts.Include("Category").First(p => p.post_id == id);
+                Post post = db.Posts.Include("Category").First(p => p.Post_id == id);
                 db.Posts.Remove(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");

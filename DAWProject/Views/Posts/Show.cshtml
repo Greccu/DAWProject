@@ -3,15 +3,15 @@
     ViewBag.Title = "Show";
 }
 
-<h2>@ViewBag.Post.title</h2>
-<p>@ViewBag.Post.content</p>
-<p>@ViewBag.Post.Category.category_name</p>
-<small>@ViewBag.Post.created_at.ToString()</small>
+<h2>@ViewBag.Post.Title</h2>
+<p>@ViewBag.Post.Content</p>
+<p>@ViewBag.Post.Category.Category_name</p>
+<small>@ViewBag.Post.Created_at.ToString()</small>
 <br />
 <br />
 
-<input type="button" value="Edit" onclick="location.href='/Posts/Edit/@ViewBag.Post.post_id'" />
-<form method="post" action="/Posts/Delete/@ViewBag.Post.post_id">
+<input type="button" value="Edit" onclick="location.href='/Posts/Edit/@ViewBag.Post.Post_id'" />
+<form method="post" action="/Posts/Delete/@ViewBag.Post.Post_id">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
     <button type="submit">Delete</button>
 </form>
