@@ -13,7 +13,8 @@ namespace DAWProject.Models
         [Required]
         public string Content { get; set; }
         public DateTime Date { get; set; }
-        public int Post_id { get; set; }
+        public int PostId { get; set; }
+
         public virtual Post Post { get; set; }
     }
 }

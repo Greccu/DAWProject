@@ -80,3 +80,4 @@ C:\Users\Grecu\Desktop\F\DAWProject\DAWProject\obj\Debug\DAWProject.dll
 C:\Users\Grecu\Desktop\F\DAWProject\DAWProject\obj\Debug\DAWProject.pdb
 C:\Users\Grecu\Desktop\F\DAWProject\DAWProject\obj\Debug\DAWProject.Migrations.Initial.resources
 C:\Users\Grecu\Desktop\F\DAWProject\DAWProject\obj\Debug\DAWProject.csproj.GenerateResource.cache
+C:\Users\Grecu\Desktop\F\DAWProject\DAWProject\obj\Debug\DAWProject.Migrations.AddedCateg.resources

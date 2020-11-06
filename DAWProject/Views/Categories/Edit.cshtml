@@ -5,16 +5,18 @@
 
 <h2>Edit Category</h2>
 
-<form method="post" action="/Categories/Edit/@ViewBag.Category.Category_id">
+<form method="post" action="/Categories/Edit/@ViewBag.Category.CategoryId">
     @Html.HttpMethodOverride(HttpVerbs.Put)
     <label>Category Name</label>
-    <input type="text" value="@ViewBag.Category.category_name" name="Category_name" />
+    <input type="text" value="@ViewBag.Category.CategoryName" name="CategoryName" />
     <br />
     <br />
     <button type="submit">Edit Category</button>
 </form>
-<br />
-<form method="post" action="/Categories/Delete/@ViewBag.Category.Category_id">
+
+<form method="post" action="/Categories/Delete/@ViewBag.Category.CategoryId">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
     <button type="submit">Delete</button>
 </form>
+
+<input type="button" value="Back" onclick="location.href='/Categories/Index'" />

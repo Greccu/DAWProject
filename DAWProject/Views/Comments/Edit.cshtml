@@ -1,0 +1,19 @@
+﻿@model DAWProject.Models.Comment
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Post</h2>
+
+<form method="post" action="/Comment/Edit/@Model.CommentId">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <br />
+    @Html.HiddenFor(m => m.CommentId)
+    @Html.Label("Content", "Content")
+    <br />
+    @Html.Editor("Content")
+    <br /><br />
+    @Html.HiddenFor(m => m.Date)
+   
+    <button class="btn btn-sm btn-success" type="submit">Edit</button>
+</form>

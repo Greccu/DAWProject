@@ -1,28 +1,19 @@
-﻿@{
-    ViewBag.Title = "New";
-}
+﻿@model DAWProject.Models.Post
 
-<h2>Create Post</h2>
+<h2>Add Post</h2>
 <form method="post" action="/Posts/New">
-    <label>Title</label>
-    <input type="text" name="Title" />
+    @Html.Label("Title", "Post Title")
     <br />
-    <label>Content</label>
-    <textarea name="Content"></textarea>
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+    <br /><br />
+    @Html.Label("Content", "Conent")
     <br />
-    <input type="hidden" name="Created_at" value="@DateTime.Now" />
-    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control" })
+    <br /><br />
     <label>Select Category</label>
-    <select name="Category_id">
-        @foreach (var category in ViewBag.Categories)
-        {
-            <option value="@category.Category_id">
-                @category.Category_name
-            </option>
-        }
-    </select>
+    @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categ, "Value",
+    "Text"),
+    "Select Category", new { @class = "form-control" })
     <br />
-    <button type="submit">Submit</button>
+    <button class="btn btn-sm btn-success" type="submit">Adauga articol</button>
 </form>
-<input type="button" value="Back" onclick="location.href='/Posts/Index'" />
-

@@ -10,9 +10,9 @@ namespace DAWProject.Models
     public class Category
     {
         [Key]
-        public int Category_id { get; set; }
+        public int CategoryId { get; set; }
         [Required]
-        public string Category_name { get; set; }
+        public string CategoryName { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
     }

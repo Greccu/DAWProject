@@ -1,36 +1,28 @@
-﻿
+﻿@model DAWProject.Models.Post
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit Post</h2>
 
-<form method="post" action="/Posts/Edit/@ViewBag.Post.Post_id">
+<form method="post" action="/Posts/Edit/@Model.PostId">
     @Html.HttpMethodOverride(HttpVerbs.Put)
-    <label>Title</label>
-    <input type="text" value="@ViewBag.Post.Title" name="title" />
     <br />
-    <label>Content</label>
-    <textarea name="Content">@ViewBag.Post.Content</textarea>
+    @Html.HiddenFor(m => m.PostId)
+
+    @Html.Label("Title", "Title")
     <br />
-    <label>Select Category</label>
-    <select name="Category_id">
-        @foreach (var category in ViewBag.Categories)
-        {
-            if (@category.Category_id == @ViewBag.Post.Category.Category_id)
-            {
-                <option value="@category.Category_id" selected="selected">
-                    @category.Category_name
-                </option>
-            }
-            else
-            {
-                <option value="@category.Category_id">
-                    @category.Category_name
-                </option>
-            }
-        }
-    </select>
+    @Html.EditorFor(m => m.Title)
+    <br /><br />
+    @Html.Label("Content", "Content")
     <br />
-    <button type="submit">Editeaza articol</button>
+    @Html.Editor("Content")
+    <br /><br />
+    @Html.HiddenFor(m => m.CreatedAt)
+    @Html.Label("Category", "Category")
+    @Html.DropDownListFor(m => m.CategoryId,
+    new SelectList(Model.Categ, "Value", "Text"),
+    "Select Category", new { @class = "form-control" })
+    <br />
+    <button class="btn btn-sm btn-success" type="submit">Edit</button>
 </form>

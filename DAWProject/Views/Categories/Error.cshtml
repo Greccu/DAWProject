@@ -1,7 +1,8 @@
-﻿
-@{
-    ViewBag.Title = "Error";
+﻿@{
+    ViewBag.Title = "Category not found!";
 }
 
-<h2>Error</h2>
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.ErrorMessage</h3>
+<input type="button" value="Home" onclick="location.href='/Posts/Index'" />
 

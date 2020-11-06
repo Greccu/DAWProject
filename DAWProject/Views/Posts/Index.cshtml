@@ -1,18 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Posts";
 }
-
-<h2>Category</h2>
+@if (@ViewBag.Category != null){
+    <h2>@ViewBag.Category.CategoryName</h2>
+    }
+else{
+    <h2>@ViewBag.Title</h2>
+    }
+<a class="btn btn-primary" href="/Categories/Index">Back to Categories</a>
+<a class="btn btn-primary" href="/Posts/New">Add Post</a>
+<br />
 
 @foreach (var post in ViewBag.Posts)
 {
-    <h1>@post.Title</h1>
-    <p>@post.Content</p>
-    <p>@post.Created_at</p>
-    <p>@post.Category.Category_name</p>
-    <input type="button" value="Show Post" onclick="location.href='/Posts/Show/@post.Post_id'" />
+    <div class="panel panel-default">
+        <div class="panel-heading">@post.Title</div>
+        <div class="panel-body">
+            Content: <strong>@post.Content</strong>
+            <br />
+            <span class="label label-success">@post.CreatedAt</span>
+            <br />
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn btn-success" href="/Posts/Show/@post.PostId">Show Post</a>
+        </div>
+    </div>
 }
-<br />
-<br />
-<input type="button" value="Create Post" onclick="location.href='/Posts/New'" />

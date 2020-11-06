@@ -47,7 +47,7 @@ namespace DAWProject.Controllers
         public ActionResult Edit(int id)
         {
             //ViewBag.Post = db.Posts.Include("Category").Find(id);
-            ViewBag.Category = db.Categories.First(c => c.Category_id == id);
+            ViewBag.Category = db.Categories.First(c => c.CategoryId == id);
             return View();
         }
 
@@ -57,10 +57,10 @@ namespace DAWProject.Controllers
             try
             {
                 //Post post = db.Posts.Include("Category").Find(id);
-                Category category = db.Categories.First(c => c.Category_id == id);
+                Category category = db.Categories.First(c => c.CategoryId == id);
                 if (TryUpdateModel(category))
                 {
-                    category.Category_name = requestcat.Category_name;
+                    category.CategoryName = requestcat.CategoryName;
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");
@@ -79,7 +79,7 @@ namespace DAWProject.Controllers
             try
             {
                 //Post post = db.Posts.Include("Category").Find(id);
-                Category category = db.Categories.First(c => c.Category_id == id);
+                Category category = db.Categories.First(c => c.CategoryId == id);
                 db.Categories.Remove(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -128,14 +128,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010271746099_Initial.cs" />
-    <Compile Include="Migrations\202010271746099_Initial.designer.cs">
-      <DependentUpon>202010271746099_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202011061149123_Initial.cs" />
+    <Compile Include="Migrations\202011061149123_Initial.designer.cs">
+      <DependentUpon>202011061149123_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011061151100_AddedCateg.cs" />
+    <Compile Include="Migrations\202011061151100_AddedCateg.designer.cs">
+      <DependentUpon>202011061151100_AddedCateg.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppContext.cs" />
@@ -193,8 +198,17 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Error.cshtml" />
     <Content Include="Views\Categories\New.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202011061149123_Initial.resx">
+      <DependentUpon>202011061149123_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011061151100_AddedCateg.resx">
+      <DependentUpon>202011061151100_AddedCateg.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -208,11 +222,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010271746099_Initial.resx">
-      <DependentUpon>202010271746099_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

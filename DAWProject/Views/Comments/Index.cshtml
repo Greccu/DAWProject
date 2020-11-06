@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Comments";
+}
+
+<h2>@ViewBag.Title</h2>
+<input type="button" value="Home" onclick="location.href='/Categories/Index'" />
+
+@foreach (var comm in @ViewBag.Comments)
+{
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div>
+                <p>@comm.Content</p>
+                <small class="pull-right">@comm.Date</small>
+            </div>
+            <div style="display: inline-block; float : left; margin-right: 15px">
+                <a class="glyphicon glyphicon-pencil"
+                   href="/Comments/Edit/@comm.CommentId"></a>
+            </div>
+            <div style="display: inline-block; float : left">
+                <form method="post" action="/Comments/Delete/@comm.CommentId">
+                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                    <button class="glyphicon glyphicon-trash" style="border: none; background: transparent" type="submit"></button>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+<hr />
+}
