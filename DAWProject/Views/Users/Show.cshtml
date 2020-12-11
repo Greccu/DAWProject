@@ -24,10 +24,6 @@
          @if (@Model.PhoneNumber != null)
          {
              <i class="glyphicon glyphicon-phone"></i>@:User Phone Number:<span class="label label-default">@Model.PhoneNumber</span>
-
-
-
-
          }
 
      </div>
@@ -39,7 +35,7 @@
              {
                  @Html.HttpMethodOverride(HttpVerbs.Delete)
                  <br />
-                 <button class="btn btn-success" type="submit">Sterge utilizator</button>
+                 <button class="btn btn-success" type="submit">Delete User</button>
 
              }
          </div>

@@ -1,4 +1,4 @@
-﻿
+﻿@model DAWProject.Models.Post
 @{
     /**/
 
@@ -11,8 +11,14 @@
 {
     <h1>@category.CategoryName</h1>
     <a class="btn btn-primary" href="/Posts/Index/@category.CategoryId">Show Posts from Category</a>
-    <a class="btn btn-primary" href="/Categories/Edit/@category.CategoryId">Edit</a>
+    if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-primary" href="/Categories/Edit/@category.CategoryId">Edit</a>
+    }
 }
 <br />
 <br />
-<a class="btn btn-primary" href="/Categories/New">Create Category</a>
+@if (User.IsInRole("Admin"))
+{
+    <a class="btn btn-primary" href="/Categories/New">Create Category</a>
+}

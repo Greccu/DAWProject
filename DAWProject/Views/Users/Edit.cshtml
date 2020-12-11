@@ -45,7 +45,7 @@
 
     <i class="glyphicon glyphicon-th-list"></i>
     @Html.Label("Role", "User's Role", new { @class = "" })
-    @Html.DropDownList("newRole", new SelectList(Model.AllRoles, "Value", "Text", ViewBag.userRole), "Select User Role", new { @class = "form-control" })
+    @Html.DropDownList("newRole", new SelectList(Model.AllRoles, "Value", "Text", ViewBag.userRole), null, new { @class = "form-control" })
     <br />
 
 

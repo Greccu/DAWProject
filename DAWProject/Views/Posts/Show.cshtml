@@ -15,7 +15,7 @@
 <div class="panel panel-default">
     @Html.Partial("PostInfo", Model)
 
-    @if (ViewBag.showButtons == true && Model.UserId == ViewBag.currentUser || User.IsInRole("Admin"))
+    @if (ViewBag.currentUser == Model.UserId || User.IsInRole("Admin") || User.IsInRole("Editor"))
     {
             <div class="panel-footer">
                 <a class="btn btn-success pull-left" href="/Posts/Edit/@Model.PostId">Edit Post</a>
@@ -45,7 +45,7 @@
                         <p>@comm.Content</p>
                         <small class="pull-right">@comm.Date</small>
                     </div>
-                    @if (ViewBag.showButtons == true && Model.UserId == comm.UserId || User.IsInRole("Admin"))
+                    @if (ViewBag.currentUser == comm.UserId || User.IsInRole("Admin") || User.IsInRole("Editor"))
                     {
                             <div style="display: inline-block; float : left; margin-right: 15px">
                                 <a class="glyphicon glyphicon-pencil"

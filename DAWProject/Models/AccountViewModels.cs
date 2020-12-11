@@ -69,6 +69,13 @@ namespace DAWProject.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

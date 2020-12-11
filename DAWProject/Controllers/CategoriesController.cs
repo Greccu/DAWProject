@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace DAWProject.Controllers
 {
+    [Authorize(Roles = "Admin,Editor,User")]
     public class CategoriesController : Controller
     {
 
@@ -35,6 +36,7 @@ namespace DAWProject.Controllers
             {
                 db.Categories.Add(cat);
                 db.SaveChanges();
+                TempData["message"] = "Category added!";
                 return RedirectToAction("Index");
             }
             catch (Exception e)
@@ -62,6 +64,7 @@ namespace DAWProject.Controllers
                 {
                     category.CategoryName = requestcat.CategoryName;
                     db.SaveChanges();
+                    TempData["message"] = "Category edited";
                 }
                 return RedirectToAction("Index");
             }
@@ -82,6 +85,7 @@ namespace DAWProject.Controllers
                 Category category = db.Categories.First(c => c.CategoryId == id);
                 db.Categories.Remove(category);
                 db.SaveChanges();
+                TempData["message"] = "Category deleted!";
                 return RedirectToAction("Index");
             }
             catch (Exception e)
