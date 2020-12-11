@@ -1,0 +1,12 @@
+﻿
+    <div class="panel-heading">@Model.Title</div>
+    <div class="panel-body">
+        Content: <strong>@Model.Content</strong>
+        <br />
+        <i class="glyphicon glyphicon-globe"></i> @Model.Category.CategoryName
+        <br />
+        <i class="glyphicon glyphicon-user"></i> <i>Posted by: </i> <strong> @Model.User.UserName </strong>
+        <br />
+        <span class="label label-success">@Model.CreatedAt</span>
+        <br />
+    </div>

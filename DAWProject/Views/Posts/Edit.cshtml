@@ -5,7 +5,10 @@
 
 <h2>Edit Post</h2>
 
-<form method="post" action="/Posts/Edit/@Model.PostId">
+
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Posts"))
+{
     @Html.HttpMethodOverride(HttpVerbs.Put)
     <br />
     @Html.HiddenFor(m => m.PostId)
@@ -13,16 +16,23 @@
     @Html.Label("Title", "Title")
     <br />
     @Html.EditorFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Title, "You must put a title for this post!", new {
+@class = "text-danger " })
     <br /><br />
+
     @Html.Label("Content", "Content")
     <br />
     @Html.Editor("Content")
+    @Html.ValidationMessageFor(m => m.Content, "Write something in your post.", new {
+@class = "text-danger " })
     <br /><br />
     @Html.HiddenFor(m => m.CreatedAt)
     @Html.Label("Category", "Category")
     @Html.DropDownListFor(m => m.CategoryId,
-    new SelectList(Model.Categ, "Value", "Text"),
-    "Select Category", new { @class = "form-control" })
+                new SelectList(Model.Categ, "Value", "Text"),
+                "Select Category", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Category, "What is your post about?", new {
+@class = "text-danger " })
     <br />
     <button class="btn btn-sm btn-success" type="submit">Edit</button>
-</form>
+}

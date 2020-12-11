@@ -1,0 +1,54 @@
+﻿@model DAWProject.Models.ApplicationUser
+
+@{
+    /**/
+
+    ViewBag.Title = "Edit User Roles";
+}
+
+<ol class="breadcrumb">
+    <li><h3>@ViewBag.Title</h3></li>
+</ol>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Users", routeValues: new { id = @Model.Id }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    <br />
+
+    <i class="glyphicon glyphicon-user"></i>
+    @Html.Label("UserName", "User's Name", new { @class = "" })
+
+    <br />
+
+    @Html.EditorFor(m => m.UserName)
+
+    <br /><br />
+
+    <i class="glyphicon glyphicon-envelope"></i>
+    @Html.Label("Email", "User's Email", new { @class = "" })
+
+    <br />
+
+    @Html.EditorFor(m => m.Email)
+
+    <br /><br />
+
+    <i class="glyphicon glyphicon-phone"></i>
+    @Html.Label("PhoneNumber", "User's Phone Number")
+
+    <br />
+
+    @Html.EditorFor(m => m.PhoneNumber)
+    <br /><br />
+
+    <i class="glyphicon glyphicon-th-list"></i>
+    @Html.DropDownList("newRole", new SelectList(Model.AllRoles, "Value", "Text", ViewBag.userRole), "Select User Role", new { @class = "form-control" })
+    <br />
+
+
+    <button class="btn btn-sm btn-success" type="submit">Modify User's Info</button>
+
+
+}
+

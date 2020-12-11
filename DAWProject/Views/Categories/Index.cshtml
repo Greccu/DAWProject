@@ -1,17 +1,18 @@
 ﻿
 @{
+    /**/
+
     ViewBag.Title = "Categories";
 }
 
 <h2>@ViewBag.Title</h2>
-<input type="button" value="Show all Posts" onclick="location.href='/Posts/Index'" />
-
+<a class="btn btn-primary" href="/Posts/Index">Show all posts</a>
 @foreach (var category in ViewBag.Categories)
 {
     <h1>@category.CategoryName</h1>
-    <input type="button" value="Show Posts from Category" onclick="location.href='/Posts/Index/@category.CategoryId'" />
-    <input type="button" value="Edit Category" onclick="location.href='/Categories/Edit/@category.CategoryId'" />
+    <a class="btn btn-primary" href="/Posts/Index/@category.CategoryId">Show Posts from Category</a>
+    <a class="btn btn-primary" href="/Categories/Edit/@category.CategoryId">Edit Category Name</a>
 }
 <br />
 <br />
-<input type="button" value="Create Category" onclick="location.href='/Categories/New'" />
+<a class="btn btn-primary" href="/Categories/New">Create Category</a>

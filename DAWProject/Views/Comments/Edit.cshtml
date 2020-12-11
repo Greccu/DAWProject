@@ -3,9 +3,9 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit Post</h2>
+<h2>Edit Comment</h2>
 
-<form method="post" action="/Comment/Edit/@Model.CommentId">
+<form method="post" action="/Comments/Edit/@Model.CommentId">
     @Html.HttpMethodOverride(HttpVerbs.Put)
     <br />
     @Html.HiddenFor(m => m.CommentId)

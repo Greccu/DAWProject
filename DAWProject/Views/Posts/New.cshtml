@@ -1,19 +1,40 @@
 ﻿@model DAWProject.Models.Post
 
+<br />
+<a href="/Posts/Index">Back</a>
+<br />
+<br />
+
 <h2>Add Post</h2>
 <form method="post" action="/Posts/New">
     @Html.Label("Title", "Post Title")
     <br />
-    @Html.TextBox("Title", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Title, "You must put a title for this post!", new {
+@class = "text-danger " })
     <br /><br />
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+
+    <br /><br />
+
     @Html.Label("Content", "Conent")
     <br />
+    @Html.ValidationMessageFor(m => m.Content, "Write something in your post.", new {
+@class = "text-danger " })
+    <br /><br />
     @Html.TextArea("Content", null, new { @class = "form-control" })
     <br /><br />
     <label>Select Category</label>
     @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categ, "Value",
     "Text"),
     "Select Category", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(m => m.Category, "What is your post about?", new {
+@class = "text-danger " })
     <br />
     <button class="btn btn-sm btn-success" type="submit">Adauga articol</button>
 </form>
+
+
+
+
+

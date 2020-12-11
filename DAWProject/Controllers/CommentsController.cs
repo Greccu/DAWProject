@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace DAWProject.Controllers
 {
     public class CommentsController : Controller
     {
         
-        private Models.AppContext db = new Models.AppContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // Show all comments (only available to the administrator)
         public ActionResult Index()
@@ -39,51 +40,73 @@ namespace DAWProject.Controllers
         }
 
         // GET implicit: Afisarea datelor unei postari pentru editare
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Edit(int id)
         {
-            Comment comment = db.Comments.Find(id);
-            return View(comment);
+            Comment comm = db.Comments.Find(id);
+
+            if (comm.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
+            {
+                return View(comm);
+            }
+            else
+            {
+                TempData["message"] = "You don't have the rights to do this!";
+                return RedirectToAction("Show", "Posts", new { id = comm.PostId });
+            }
+
         }
 
+
         [HttpPut]
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Edit(int id, Comment requestComment)
         {
             try
             {
-                Comment comment = db.Comments.Find(id);
-                if (TryUpdateModel(comment))
+                Comment comm = db.Comments.Find(id);
+
+                if (comm.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
                 {
-                    comment.Content = requestComment.Content;
-                    comment.Date = requestComment.Date;
-                    db.SaveChanges();
-                    TempData["message"] = "Comment edit completed!";
-                    return RedirectToAction("Show", "Posts", new { id = comment.PostId });
+                    if (TryUpdateModel(comm))
+                    {
+                        comm.Content = requestComment.Content;
+                        comm.Date = requestComment.Date;
+                        db.SaveChanges();
+                        TempData["message"] = "Comment edit completed!";
+                        return RedirectToAction("Show", "Posts", new { id = comm.PostId });
+                    }
+                    return Redirect("/Posts/Show/" + comm.PostId);
                 }
-                return View(requestComment);
+                else
+                {
+                    TempData["message"] = "You don't have the rights to do this!";
+                    return RedirectToAction("Show", "Posts", new { id = comm.PostId });
+                }
             }
             catch (Exception e)
             {
-                ViewBag.ErrorMessage = e.Message;
                 return View(requestComment);
             }
         }
 
+
         [HttpDelete]
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Delete(int id)
         {
-            try
+            Comment comm = db.Comments.Find(id);
+            if (comm.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
             {
-
-                Comment comment = db.Comments.Find(id);
-                db.Comments.Remove(comment);
+                db.Comments.Remove(comm);
                 db.SaveChanges();
                 TempData["message"] = "Comment deleted!";
-                return RedirectToAction("Index");
+                return Redirect("/Posts/Show/" + comm.PostId);
             }
-            catch (Exception e)
+            else
             {
-                ViewBag.ErrorMessage = e.Message;
-                return View("Error");
+                TempData["message"] = "You don't have the rights to do this!";
+                return RedirectToAction("Show", "Posts", new { id = comm.PostId });
             }
 
         }

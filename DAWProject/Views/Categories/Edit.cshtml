@@ -11,12 +11,13 @@
     <input type="text" value="@ViewBag.Category.CategoryName" name="CategoryName" />
     <br />
     <br />
-    <button type="submit">Edit Category</button>
+    <button class="btn-primary"type="submit">Edit Category</button>
+
 </form>
 
 <form method="post" action="/Categories/Delete/@ViewBag.Category.CategoryId">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
-    <button type="submit">Delete</button>
+    <button class="btn-primary" type="submit">Delete</button>
 </form>
 
-<input type="button" value="Back" onclick="location.href='/Categories/Index'" />
+<a class="btn btn-primary" href="/Categories/Index">Back</a>

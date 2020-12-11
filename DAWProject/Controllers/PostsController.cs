@@ -1,4 +1,5 @@
 ﻿using DAWProject.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,24 @@ namespace DAWProject.Controllers
 {
     public class PostsController : Controller
     {
-        private Models.AppContext db = new Models.AppContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
-
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Index(int? id)
         {
             if (id == null)
             {
-                var posts = db.Posts.Include("Category");
+                var posts = db.Posts.Include("Category").Include("User");
                 ViewBag.Posts = posts;
+
+                if (TempData.ContainsKey("message"))
+                {
+                    ViewBag.Message = TempData["message"];
+                }
             }
             else
             {
-                var posts = from po in db.Posts
+                var posts = from po in db.Posts.Include("User")
                             where po.CategoryId == id
                             select po;
                 ViewBag.Category = db.Categories.Find(id);
@@ -30,52 +36,103 @@ namespace DAWProject.Controllers
             return View();
         }
 
+
         // GET implicit - Vizualizarea unei postari
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Show(int id)
         {
             try
            {
+                SetAccessRights();
                 //ViewBag.Post = db.Posts.Include("Category").Find(id);
                 Post post = db.Posts.Find(id);;
                 return View(post);
             }
             catch(Exception e)
             {
+                SetAccessRights();
                 ViewBag.ErrorMessage = e.Message;
                 return View("Error");
             }
         }
 
+        [HttpPost]
+        [Authorize(Roles = "User,Editor,Admin")]
+        public ActionResult Show(Comment comm)
+        {
+            comm.UserId = User.Identity.GetUserId();
+            comm.Date = DateTime.Now;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Comments.Add(comm);
+                    db.SaveChanges();
+                    return Redirect("/Posts/Show/" + comm.PostId);
+                }
+
+                else
+                {
+                    SetAccessRights();
+                    Post p = db.Posts.Find(comm.PostId);
+                    return View(p);
+                }
+
+            }
+
+            catch (Exception e)
+            {
+                Post p = db.Posts.Find(comm.PostId);
+                SetAccessRights();
+
+                return View(p);
+            }
+
+        }
+
         // CREATE
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult New()
         {
-            Post post = new Post
-            {
-                //preluam lista de categorii
-                Categ = GetAllCategories()
-            };
+            Post post = new Post();
+            //preluam lista de categorii
+            post.Categ = GetAllCategories();
+
+            post.UserId = User.Identity.GetUserId();
             return View(post);
         }
   
         [HttpPost]
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult New(Post post)
         {
+            post.UserId = User.Identity.GetUserId();
             post.CreatedAt = DateTime.Now;
             try
             {
-                db.Posts.Add(post);
-                db.SaveChanges();
-                TempData["message"] = "Post Added!";
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Posts.Add(post);
+                    db.SaveChanges();
+                    TempData["message"] = "Post Added!";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    post.Categ = GetAllCategories();
+                    return View(post);
+                }
             }
             catch (Exception e)
             {
-                ViewBag.ErrorMessage = e.Message;
+                //ViewBag.ErrorMessage = e.Message;
+                post.Categ = GetAllCategories();
                 return View(post);
             }
         }
 
         // GET implicit: Afisarea datelor unei postari pentru editare
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Edit(int id)
         {
             Post post = db.Posts.Find(id);
@@ -86,44 +143,64 @@ namespace DAWProject.Controllers
         [HttpPut]
         public ActionResult Edit(int id, Post requestPost)
         {
+            requestPost.Categ = GetAllCategories();
+            
             try
             {
-                Post post = db.Posts.Find(id);
-                if (TryUpdateModel(post))
+                if (ModelState.IsValid)
                 {
-                    post.Title = requestPost.Title;
-                    post.Content = requestPost.Content;
-                    post.CreatedAt = requestPost.CreatedAt;
-                    post.CategoryId = requestPost.CategoryId;
-                    db.SaveChanges();
-                    TempData["message"] = "Post edit completed!";
-                    return RedirectToAction("Index");
+                    Post post = db.Posts.Find(id);
+                    if (post.UserId == User.Identity.GetUserId() ||
+User.IsInRole("Admin"))
+                    {
+                        if (TryUpdateModel(post))
+                        {
+                            post.Title = requestPost.Title;
+                            post.Content = requestPost.Content;
+                            post.CreatedAt = requestPost.CreatedAt;
+                            post.CategoryId = requestPost.CategoryId;
+                            db.SaveChanges();
+                            TempData["message"] = "Post edit completed!";
+                        }
+                        return RedirectToAction("Show/" + id.ToString());
+                    }
+                    else
+                    {
+                        TempData["message"] = "You can't edit a post that isn't yours!";
+                        return RedirectToAction("Index");
+                    }
+
                 }
-                return View(requestPost);
+                else
+                {
+                    requestPost.Categ = GetAllCategories();
+                    return View(requestPost);
+                }
             }
             catch (Exception e)
             {
-                ViewBag.ErrorMessage = e.Message;
+                requestPost.Categ = GetAllCategories();
                 return View(requestPost);
             }
         }
 
         [HttpDelete]
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Delete(int id)
         {
-            try
-            {
+            Post post = db.Posts.Find(id);
 
-                Post post = db.Posts.Find(id);
+            if (post.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
+            {
                 db.Posts.Remove(post);
                 db.SaveChanges();
                 TempData["message"] = "Post deleted!";
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            else
             {
-                ViewBag.ErrorMessage = e.Message;
-                return View("Error");
+                TempData["message"] = "You can't delete a post that isn't yours!";
+                return RedirectToAction("Index");
             }
 
         }
@@ -148,6 +225,18 @@ namespace DAWProject.Controllers
             }
             // returnam lista de categorii
             return selectList;
+        }
+
+        private void SetAccessRights()
+        {
+            ViewBag.showButtons = false;
+            if (User.IsInRole("Editor") || User.IsInRole("Admin"))
+            {
+                ViewBag.showButtons = true;
+            }
+
+            ViewBag.isAdmin = User.IsInRole("Admin");
+            ViewBag.currentUser = User.Identity.GetUserId();
         }
 
     }

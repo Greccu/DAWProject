@@ -11,7 +11,7 @@ namespace DAWProject.Controllers
     public class CategoriesController : Controller
     {
 
-        private Models.AppContext db = new Models.AppContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Category
         public ActionResult Index()

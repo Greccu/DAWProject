@@ -1,27 +1,20 @@
-﻿
-@{
-    ViewBag.Title = "Posts";
-}
-@if (@ViewBag.Category != null){
+﻿@model DAWProject.Models.Post
+@if (@ViewBag.Category != null)
+{
     <h2>@ViewBag.Category.CategoryName</h2>
-    }
-else{
+}
+else
+{
     <h2>@ViewBag.Title</h2>
-    }
+}
 <a class="btn btn-primary" href="/Categories/Index">Back to Categories</a>
 <a class="btn btn-primary" href="/Posts/New">Add Post</a>
 <br />
 
-@foreach (var post in ViewBag.Posts)
+@foreach (DAWProject.Models.Post post in ViewBag.Posts)
 {
     <div class="panel panel-default">
-        <div class="panel-heading">@post.Title</div>
-        <div class="panel-body">
-            Content: <strong>@post.Content</strong>
-            <br />
-            <span class="label label-success">@post.CreatedAt</span>
-            <br />
-        </div>
+        @Html.Partial("PostInfo", post)
         <div class="panel-footer">
             <a class="btn btn-sm btn btn-success" href="/Posts/Show/@post.PostId">Show Post</a>
         </div>

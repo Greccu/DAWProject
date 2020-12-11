@@ -11,7 +11,7 @@ namespace DAWProject.Models
     {
         [Key]
         public int CategoryId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Category name required")]
         public string CategoryName { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
