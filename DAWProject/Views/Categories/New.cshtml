@@ -2,13 +2,15 @@
 @{
     ViewBag.Title = "New";
 }
-
+<br />
+<a class="btn btn-primary" href="/Categories/Index">Back</a>
+<br />
 <h2>Create Category</h2>
-
 <form method="post" action="/Categories/New">
     <label>Name</label>
     <input type="text" name="CategoryName" />
     <br />
-    <button class="btn-primary" type="submit">Submit</button>
+    <br />
+    <button class="btn btn-primary" type="submit">Submit</button>
 </form>
-<a class="btn btn-primary" href="/Categories/Index">Back</a>
+

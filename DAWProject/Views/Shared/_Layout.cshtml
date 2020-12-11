@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - App Name</title>
+    <title>Numee</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css"
+          rel="stylesheet">
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
@@ -17,22 +18,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("PostsApp", "Index", "Posts", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Numee", "Index", "Posts", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Show Posts", "Index", "Posts")</li>
-                    <li>@Html.ActionLink("Show Categories", "Index", "Categories")</li>
+
+                    <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+
+                    @if (User.IsInRole("User") || User.IsInRole("Editor") || User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Add Post", "New", "Posts")</li>
+                    }
 
                     @if (User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Add Categories", "New", "Categories")</li>
                     }
 
-                    @if (User.IsInRole("Editor") || User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("Add Post", "New", "Posts")</li>
-                    }
 
                     @if (User.IsInRole("Admin"))
                     {
@@ -47,12 +49,15 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Cristian & Bogdan Grecu</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js">
+    </script>
+    @Scripts.Render("~/Scripts/Summernote.js");
 </body>
 </html>

@@ -5,10 +5,11 @@
 
     ViewBag.Title = "Edit User Roles";
 }
+<br />
+<a class="btn btn-primary" href="/Users/Index">Back</a>
 
-<ol class="breadcrumb">
-    <li><h3>@ViewBag.Title</h3></li>
-</ol>
+<li><h3>@ViewBag.Title</h3></li>
+
 
 @using (Html.BeginForm(actionName: "Edit", controllerName: "Users", routeValues: new { id = @Model.Id }))
 {
@@ -43,6 +44,7 @@
     <br /><br />
 
     <i class="glyphicon glyphicon-th-list"></i>
+    @Html.Label("Role", "User's Role", new { @class = "" })
     @Html.DropDownList("newRole", new SelectList(Model.AllRoles, "Value", "Text", ViewBag.userRole), "Select User Role", new { @class = "form-control" })
     <br />
 

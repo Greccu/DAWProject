@@ -8,15 +8,18 @@ else
     <h2>@ViewBag.Title</h2>
 }
 <a class="btn btn-primary" href="/Categories/Index">Back to Categories</a>
+<br />
+<br />
 <a class="btn btn-primary" href="/Posts/New">Add Post</a>
 <br />
-
+<br />
 @foreach (DAWProject.Models.Post post in ViewBag.Posts)
 {
-    <div class="panel panel-default">
-        @Html.Partial("PostInfo", post)
-        <div class="panel-footer">
-            <a class="btn btn-sm btn btn-success" href="/Posts/Show/@post.PostId">Show Post</a>
+    <a href="/Posts/Show/@post.PostId">
+        <div class="panel panel-default">
+
+            @Html.Partial("PostInfo", post)
+
         </div>
-    </div>
+    </a>
 }

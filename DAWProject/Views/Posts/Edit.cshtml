@@ -22,7 +22,7 @@
 
     @Html.Label("Content", "Content")
     <br />
-    @Html.Editor("Content")
+    @Html.TextArea("Content", Model.Content, new { @class = "form-control summernote" })
     @Html.ValidationMessageFor(m => m.Content, "Write something in your post.", new {
 @class = "text-danger " })
     <br /><br />

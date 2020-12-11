@@ -4,38 +4,44 @@
     ViewBag.Title = "Detalii utilizator";
 }
 
-<ol class="breadcrumb">
-    <li><h3>@ViewBag.Title</h3></li>
-</ol>
+<br />
+<a class="btn btn-primary" href="/Users/Index">Back</a>
 
-<div class="panel-heading">User Name: @Model.UserName</div>
-
-<div class="panel-body">
-
-    <i class="glyphicon glyphicon-envelope"></i> User Email: <span class="label label-default">@Model.Email</span>
-    <br/>
-    <i class="glyphicon glyphicon-th-list"></i> User Role: @ViewBag.roleName
-    
-    <br /><br />
-
-    @if (@Model.PhoneNumber != null)
-    {
-        <i class="glyphicon glyphicon-phone"></i>@:User Phone Number:<span class="label label-default">@Model.PhoneNumber</span>
+ <li><h3>@ViewBag.Title</h3></li>
 
 
-    }
+ <div class="panel panel-default">
+     <div class="panel-heading">User Name: @Model.UserName</div>
 
-</div>
+     <div class="panel-body">
 
-@if ((string)Model.Id != ViewBag.utilizatorCurent)
-{
-    <div class="panel-footer">
-        @using (Html.BeginForm(actionName: "Delete", controllerName: "Users", routeValues: new { id = @Model.Id }))
-        {
-            @Html.HttpMethodOverride(HttpVerbs.Delete)
-            <br />
-            <button class="btn btn-success" type="submit">Sterge utilizator</button>
+         <i class="glyphicon glyphicon-envelope"></i> User Email: <span class="label label-default">@Model.Email</span>
+         <br />
+         <i class="glyphicon glyphicon-th-list"></i> User Role: @ViewBag.roleName
 
-        }
+         <br /><br />
+
+         @if (@Model.PhoneNumber != null)
+         {
+             <i class="glyphicon glyphicon-phone"></i>@:User Phone Number:<span class="label label-default">@Model.PhoneNumber</span>
+
+
+
+
+         }
+
+     </div>
+
+     @if ((string)Model.Id != ViewBag.utilizatorCurent)
+     {
+         <div class="panel-footer">
+             @using (Html.BeginForm(actionName: "Delete", controllerName: "Users", routeValues: new { id = @Model.Id }))
+             {
+                 @Html.HttpMethodOverride(HttpVerbs.Delete)
+                 <br />
+                 <button class="btn btn-success" type="submit">Sterge utilizator</button>
+
+             }
+         </div>
+     }
     </div>
-}
