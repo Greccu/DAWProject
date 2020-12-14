@@ -9,12 +9,13 @@ using System.Web.Mvc;
 
 namespace DAWProject.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class UsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Users
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var users = from user in db.Users
@@ -23,7 +24,7 @@ namespace DAWProject.Controllers
             ViewBag.UsersList = users;
             return View();
         }
-
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Show(string id)
         {
             ApplicationUser user = db.Users.Find(id);
@@ -44,7 +45,7 @@ namespace DAWProject.Controllers
             return View(user);
         }
 
-
+        [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Edit(string id)
         {
             ApplicationUser user = db.Users.Find(id);
@@ -54,6 +55,7 @@ namespace DAWProject.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "User,Editor,Admin")]
         [HttpPut]
         public ActionResult Edit(string id, ApplicationUser newData)
         {
@@ -74,15 +76,21 @@ namespace DAWProject.Controllers
                     user.UserName = newData.UserName;
                     user.Email = newData.Email;
                     user.PhoneNumber = newData.PhoneNumber;
-
-                    var roles = from role in db.Roles select role;
-                    foreach (var role in roles)
+                    
+                    
+                    if (User.IsInRole("Admin"))
                     {
-                        UserManager.RemoveFromRole(id, role.Name);
-                    }
+                        var roles = from role in db.Roles select role;
+                        foreach (var role in roles)
+                        {
+                            UserManager.RemoveFromRole(id, role.Name);
+                        }
 
-                    var selectedRole = db.Roles.Find(HttpContext.Request.Params.Get("newRole"));
-                    UserManager.AddToRole(id, selectedRole.Name);
+
+                        var selectedRole = db.Roles.Find(HttpContext.Request.Params.Get("newRole"));
+                        UserManager.AddToRole(id, selectedRole.Name);
+                    }
+                    
 
                     db.SaveChanges();
                 }
@@ -105,7 +113,7 @@ namespace DAWProject.Controllers
             foreach (var role in roles)
             {
                 selectList.Add(new SelectListItem
-                {
+                { 
                     Value = role.Id.ToString(),
                     Text = role.Name.ToString()
                 });
@@ -113,6 +121,7 @@ namespace DAWProject.Controllers
             return selectList;
         }
 
+        [Authorize(Roles = "User,Editor,Admin")]
         [HttpDelete]
         public ActionResult Delete(string id)
         {

@@ -8,17 +8,17 @@
 
 @foreach (var user in ViewBag.UsersList)
 {   <div class="panel panel-default">
-        <div class="panel-heading">User Name: @user.UserName</div>
+        <div class="panel-heading">Username: @user.UserName</div>
 
         <div class="panel-body">
 
-            <i class="glyphicon glyphicon-envelope"></i> User Email: <span class="label label-default">@user.Email</span>
+            <i class="glyphicon glyphicon-envelope"></i> Email: <span class="label label-default">@user.Email</span>
 
-            <br /><br />
+            <br />
 
             @if (@user.PhoneNumber != null)
             {
-                <i class="glyphicon glyphicon-phone"></i>@:User Phone Number:<span class="label label-default">@user.PhoneNumber</span>
+                <i class="glyphicon glyphicon-phone"></i>@:Phone Number:<span class="label label-default">@user.PhoneNumber</span>
 
 
 
@@ -29,8 +29,8 @@
 
         <div class="panel-footer">
 
-            <a class="btn btn-sm btn-success" href="/Users/Edit/@user.Id"> Edit User's Info</a>
-            <a class="btn btn-sm btn-success" href="/Users/Show/@user.Id"> View User's Info</a>
+            <a class="btn btn-sm btn-success" href="/Users/Edit/@user.Id"> Edit Profile</a>
+            <a class="btn btn-sm btn-success" href="/Users/Show/@user.Id"> View Profile</a>
 
         </div>
 

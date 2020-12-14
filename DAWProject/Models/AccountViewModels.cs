@@ -6,7 +6,7 @@ namespace DAWProject.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "User Name")]
+        [Display(Name = "UserName")]
         public string UserName { get; set; }
 
         [Required]
@@ -69,9 +69,10 @@ namespace DAWProject.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "User Name")]
+        [Display(Name = "Username")]
         public string UserName { get; set; }
 
+        [Phone]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿@model DAWProject.Models.ApplicationUser 
 
 @{
-    ViewBag.Title = "Detalii utilizator";
+    ViewBag.Title = "User Profile";
 }
 
 <br />
@@ -11,33 +11,37 @@
 
 
  <div class="panel panel-default">
-     <div class="panel-heading">User Name: @Model.UserName</div>
+     <div class="panel-heading">Username: @Model.UserName</div>
 
      <div class="panel-body">
 
-         <i class="glyphicon glyphicon-envelope"></i> User Email: <span class="label label-default">@Model.Email</span>
+         <i class="glyphicon glyphicon-envelope"></i> Email: <span class="label label-default">@Model.Email</span>
          <br />
-         <i class="glyphicon glyphicon-th-list"></i> User Role: @ViewBag.roleName
-
-         <br /><br />
-
+         <i class="glyphicon glyphicon-th-list"></i> Role: @ViewBag.roleName
+         <br />
          @if (@Model.PhoneNumber != null)
          {
-             <i class="glyphicon glyphicon-phone"></i>@:User Phone Number:<span class="label label-default">@Model.PhoneNumber</span>
+             <i class="glyphicon glyphicon-phone"></i>@:Phone Number:<span class="label label-default">@Model.PhoneNumber</span>
          }
 
      </div>
 
-     @if ((string)Model.Id != ViewBag.utilizatorCurent)
+     @if ((string)Model.Id == ViewBag.currentUser || User.IsInRole("Admin"))
      {
-         <div class="panel-footer">
-             @using (Html.BeginForm(actionName: "Delete", controllerName: "Users", routeValues: new { id = @Model.Id }))
-             {
-                 @Html.HttpMethodOverride(HttpVerbs.Delete)
-                 <br />
-                 <button class="btn btn-success" type="submit">Delete User</button>
+     <div class="panel-footer">
 
+         @using (Html.BeginForm(actionName: "Delete", controllerName: "Users", routeValues: new { id = @Model.Id }))
+         {
+             @Html.HttpMethodOverride(HttpVerbs.Delete)
+             if ((string)Model.Id == ViewBag.currentUser)
+             {
+                 <a class="btn btn btn-success" href="/Users/Edit/@Model.Id">Edit Profile </a>
+                 <a class="btn btn btn-success" href="/Manage/Index"> Manage</a>
              }
-         </div>
+             <button class="btn btn-success" type="submit"> Delete User </button>
+
+         }
+     </div>
      }
-    </div>
+
+ </div>

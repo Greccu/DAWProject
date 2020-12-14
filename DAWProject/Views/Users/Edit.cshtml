@@ -3,7 +3,7 @@
 @{
     /**/
 
-    ViewBag.Title = "Edit User Roles";
+    ViewBag.Title = "Edit Profile";
 }
 <br />
 <a class="btn btn-primary" href="/Users/Index">Back</a>
@@ -18,7 +18,7 @@
     <br />
 
     <i class="glyphicon glyphicon-user"></i>
-    @Html.Label("UserName", "User's Name", new { @class = "" })
+    @Html.Label("UserName", "Username", new { @class = "" })
 
     <br />
 
@@ -27,7 +27,7 @@
     <br /><br />
 
     <i class="glyphicon glyphicon-envelope"></i>
-    @Html.Label("Email", "User's Email", new { @class = "" })
+    @Html.Label("Email", "Email", new { @class = "" })
 
     <br />
 
@@ -36,20 +36,22 @@
     <br /><br />
 
     <i class="glyphicon glyphicon-phone"></i>
-    @Html.Label("PhoneNumber", "User's Phone Number")
+    @Html.Label("PhoneNumber", "Phone Number")
 
     <br />
 
     @Html.EditorFor(m => m.PhoneNumber)
     <br /><br />
+    if (User.IsInRole("Admin"))
+    {
+        <i class="glyphicon glyphicon-th-list"></i>
+        @Html.Label("Role", "Role", new { @class = "" })
+        @Html.DropDownList("newRole", new SelectList(Model.AllRoles, "Value", "Text", ViewBag.userRole), null, new { @class = "form-control" })
+        <br />
+    }
 
-    <i class="glyphicon glyphicon-th-list"></i>
-    @Html.Label("Role", "User's Role", new { @class = "" })
-    @Html.DropDownList("newRole", new SelectList(Model.AllRoles, "Value", "Text", ViewBag.userRole), null, new { @class = "form-control" })
-    <br />
 
-
-    <button class="btn btn-sm btn-success" type="submit">Modify User's Info</button>
+    <button class="btn btn-sm btn-success" type="submit">Save Changes</button>
 
 
 }

@@ -38,33 +38,33 @@ textarea {
     border-bottom: 1px inset #ffda79;
 }
 
-.navbar a {
-    color: #ffda79;
-}
+    .navbar a {
+        color: #ffda79;
+    }
 
-.navbar a:hover {
-    color: #ccae62;
-    background-color: transparent;
-}
+        .navbar a:hover {
+            color: #ccae62;
+            background-color: transparent;
+        }
 
-.navbar li {
-    background-color: transparent;
-}
-
-    .navbar li a:hover {
+    .navbar li {
         background-color: transparent;
     }
 
-.navbar a:hover {
-    background-color: transparent;
-}
+        .navbar li a:hover {
+            background-color: transparent;
+        }
+
+    .navbar a:hover {
+        background-color: transparent;
+    }
 
 .glyphicon {
     color: #ffda79;
 }
 
 
-.panel{
+.panel {
     background-color: #40407a;
     color: #ffda79;
     border: solid 1px #ffb142;
@@ -74,6 +74,7 @@ textarea {
     background-color: #474787;
     border-top: solid 1px #ffb142;
 }
+
 .panel-default > .panel-heading {
     background-color: #474787;
     color: #ffda79;
@@ -93,22 +94,19 @@ hr {
     color: #40407a;
 }
 
-h2, h1, label{
-    color: #ffda79;
-}
-
 .btn {
     background-color: #b33939;
     color: #ffda79;
     border-color: #ff5252;
 }
-.btn:hover {
-    background-color: #ff5252;
-}
 
-.btn:focus, .btn:active, .btn-succes:active{
-    background-color: #8c2221;
-}
+    .btn:hover {
+        background-color: #ff5252;
+    }
+
+    .btn:focus, .btn:active, .btn-succes:active {
+        background-color: #8c2221;
+    }
 
 .posted {
     color: #ae9044;
@@ -116,7 +114,7 @@ h2, h1, label{
     font-size: 12px;
 }
 
-.panel-body h3{
+.panel-body h3 {
     padding: 0;
     margin: 0;
 }
@@ -125,7 +123,7 @@ h2, h1, label{
     color: #b33939;
 }
 
-li h3,h4,dd,dt,td{
+li h3, h4, dd, dt, td, h2, h1, label, p {
     color: #ffda79;
 }
 
@@ -133,4 +131,8 @@ li h3,h4,dd,dt,td{
     margin-top: 10px;
     background-color: #40407a;
     color: #ffda79;
+}
+
+.note-editable p {
+    color: black;
 }

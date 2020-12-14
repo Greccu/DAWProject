@@ -8,7 +8,7 @@
 <form method="post" action="/Posts/New">
     @Html.Label("Title", "Post Title")
     <br />
-    @Html.ValidationMessageFor(m => m.Title, "You must put a title for this post!", new {
+    @Html.ValidationMessageFor(m => m.Title, "", new {
 @class = "text-danger " })
     <br /><br />
     @Html.TextBox("Title", null, new { @class = "form-control" })
@@ -17,7 +17,7 @@
 
     @Html.Label("Content", "Conent")
     <br />
-    @Html.ValidationMessageFor(m => m.Content, "Write something in your post.", new {
+    @Html.ValidationMessageFor(m => m.Content, "", new {
 @class = "text-danger " })
     <br /><br />
     @Html.TextArea("Content", null, new { @class = "form-control summernote" })
@@ -27,10 +27,10 @@
     "Text"),
     "Select Category", new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
-    @Html.ValidationMessageFor(m => m.Category, "What is your post about?", new {
+    @Html.ValidationMessageFor(m => m.Category, "", new {
 @class = "text-danger " })
     <br />
-    <button class="btn btn-sm btn-success" type="submit">Adauga articol</button>
+    <button class="btn btn-sm btn-success" type="submit">Add Post</button>
 </form>
 
 
