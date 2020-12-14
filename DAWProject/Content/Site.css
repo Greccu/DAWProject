@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Ranchers&display=swap');
 
 .navbar-brand {
@@ -123,7 +123,7 @@ hr {
     color: #b33939;
 }
 
-li h3, h4, dd, dt, td, h2, h1, label, p {
+li h3, h4, dd, dt, td, h2, h1, label, p, body {
     color: #ffda79;
 }
 
@@ -135,4 +135,7 @@ li h3, h4, dd, dt, td, h2, h1, label, p {
 
 .note-editable p {
     color: black;
+}
+div, .font-montserrat.truncate, .font-montserrat, .truncate{
+    color: #ffda79;
 }
