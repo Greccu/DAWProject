@@ -93,10 +93,6 @@ hr {
     color: #40407a;
 }
 
-h2, h1, label{
-    color: #ffda79;
-}
-
 .btn {
     background-color: #b33939;
     color: #ffda79;
@@ -125,12 +121,16 @@ h2, h1, label{
     color: #b33939;
 }
 
-li h3,h4,dd,dt,td{
+li h3, h4, dd, dt, td, h2, h1, label, p, body {
     color: #ffda79;
 }
 
 .jumbotron {
     margin-top: 10px;
     background-color: #40407a;
+    color: #ffda79;
+}
+
+div, .font-montserrat.truncate, .font-montserrat, .truncate{
     color: #ffda79;
 }
