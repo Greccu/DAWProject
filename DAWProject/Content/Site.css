@@ -133,7 +133,7 @@ li h3, h4, dd, dt, td, h2, h1, label, p, body {
     color: #ffda79;
 }
 
-.note-editable p {
+.note-editable p, input,.text-box {
     color: black;
 }
 div, .font-montserrat.truncate, .font-montserrat, .truncate{

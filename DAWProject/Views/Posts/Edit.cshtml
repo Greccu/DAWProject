@@ -2,9 +2,10 @@
 @{
     ViewBag.Title = "Edit";
 }
+<br />
+<a class="btn btn-primary" href="/Posts/Show/@Model.PostId">Back</a>
 
 <h2>Edit Post</h2>
-
 
 
 @using (Html.BeginForm(actionName: "Edit", controllerName: "Posts"))

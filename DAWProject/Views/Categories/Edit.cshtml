@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Edit";
 }
+<br />
+<a class="btn btn-primary" href="/Categories/Index">Back</a>
+<br />
 
 <h2>Edit Category</h2>
 <form method="post" action="/Categories/Edit/@ViewBag.Category.CategoryId">
@@ -17,4 +20,3 @@
     <button class="btn btn-primary" type="submit">Delete</button>
 </form>
 <br />
-<a class="btn btn-primary" href="/Categories/Index">Back</a>
