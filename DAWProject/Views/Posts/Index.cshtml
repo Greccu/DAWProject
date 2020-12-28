@@ -7,9 +7,13 @@ else
 {
     <h2>@ViewBag.Title</h2>
 }
-<a class="btn btn-primary" href="/Categories/Index">Back to Categories</a>
 <br />
-<br />
+@if (User.IsInRole("Admin") && @ViewBag.Category != null)
+{
+    <a class="btn btn-primary" href="/Categories/Edit/@ViewBag.Category.CategoryId">Edit Category</a>
+    <br />
+    <br />
+}
 <a class="btn btn-primary" href="/Posts/New">Add Post</a>
 <br />
 <br />

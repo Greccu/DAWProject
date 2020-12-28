@@ -5,20 +5,19 @@
     ViewBag.Title = "Categories";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
 <a class="btn btn-primary" href="/Posts/Index">Show all posts</a>
-@foreach (var category in ViewBag.Categories)
-{
-    <h1>@category.CategoryName</h1>
-    <a class="btn btn-primary" href="/Posts/Index/@category.CategoryId">Show Posts from Category</a>
-    if (User.IsInRole("Admin"))
+<div class="row">
+    <a class="allcategorybox col-xs-12 row-style" href="/Posts/Index">Show all posts</a>
+    @foreach (var category in ViewBag.Categories)
     {
-        <a class="btn btn-primary" href="/Categories/Edit/@category.CategoryId">Edit</a>
+        <a class="categorybox col-xs-6 row-style" href="/Posts/Index/@category.CategoryId">
+            <h1>@category.CategoryName</h1>
+            @if (User.IsInRole("Admin") && false)
+            {
+                <a class="btn btn-primary" href="/Categories/Edit/@category.CategoryId">Edit</a>
+            }
+        </a>
     }
-}
+</div>
 <br />
-<br />
-@if (User.IsInRole("Admin"))
-{
-    <a class="btn btn-primary" href="/Categories/New">Create Category</a>
-}

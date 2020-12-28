@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Ranchers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
 .navbar-brand {
     font-family: 'JetBrains Mono', monospace;
     font-family: 'Ranchers', cursive;
+}
+a{
+    text-decoration: none;
 }
 
 body {
@@ -138,4 +142,54 @@ li h3, h4, dd, dt, td, h2, h1, label, p, body {
 }
 div, .font-montserrat.truncate, .font-montserrat, .truncate{
     color: #ffda79;
+}
+
+.categorybox {
+    display: block;
+    background-image: url(../Images/categories-background.jpg);
+    height: auto;
+    margin: 0.5%;
+    width: 49%;
+    padding: 10%;
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-filter: brightness(100%);
+    font-family: 'Audiowide', cursive;
+}
+
+.allcategorybox {
+    display: block;
+    background-image: url(../Images/categories-background.jpg);
+    height: auto;
+    margin: 0.5%;
+    width: 99%;
+    padding: 1%;
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-filter: brightness(100%);
+    font-size: 300%;
+    text-decoration: none;
+    color: #ffda79;
+    text-align: center;
+    background-size: 100%;
+    font-family: 'Audiowide', cursive;
+}
+
+.categorybox h1 {
+    font-size: 600%;
+    text-decoration: none;
+    color: #ffda79;
+    text-align: center;
+}
+
+
+.categorybox:hover, .allcategorybox:hover {
+    color: #ffda79;
+    text-decoration: none;
+    -webkit-filter: brightness(50%);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
