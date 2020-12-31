@@ -13,28 +13,37 @@ namespace DAWProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [Authorize(Roles = "User,Editor,Admin")]
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id,string searching,string sortOrder)
         {
-            if (id == null)
-            {
-                var posts = db.Posts.Include("Category").Include("User");
-                ViewBag.Posts = posts;
-
+         
+                var posts = from po in db.Posts.Include("User").Include("Category")
+                            where ((id == null)||(po.CategoryId == id)) &&(searching == null || po.Content.Contains(searching) || po.Title.Contains(searching))
+                            select po;
                 if (TempData.ContainsKey("message"))
                 {
                     ViewBag.Message = TempData["message"];
                 }
-            }
-            else
-            {
-                var posts = from po in db.Posts.Include("User")
-                            where po.CategoryId == id
-                            select po;
-                ViewBag.Category = db.Categories.Find(id);
+                switch (sortOrder)
+                {
+                    case "new":
+                        posts = posts.OrderByDescending(p => p.CreatedAt);
+                        break;
+                    case "old":
+                        posts = posts.OrderBy(p => p.CreatedAt);
+                        break;
+                    case "categ":
+                        posts = posts.OrderBy(p => p.Category.CategoryName);
+                        break;
+                    default:
+                        break;
+
+                }
                 ViewBag.Posts = posts;
-            }
+
+           
             return View();
         }
+
 
 
         // GET implicit - Vizualizarea unei postari

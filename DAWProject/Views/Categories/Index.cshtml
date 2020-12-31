@@ -5,8 +5,6 @@
     ViewBag.Title = "Categories";
 }
 
-<h2 class="text-center">@ViewBag.Title</h2>
-<a class="btn btn-primary" href="/Posts/Index">Show all posts</a>
 <div class="row">
     <a class="allcategorybox col-xs-12 row-style" href="/Posts/Index">Show all posts</a>
     @foreach (var category in ViewBag.Categories)

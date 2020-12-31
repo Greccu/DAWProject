@@ -1,29 +1,58 @@
 ﻿@model DAWProject.Models.Post
+@{
+    /**/
+
+    ViewBag.Title = "Posts";
+    ViewBag.Count = 0;
+}
+
+
+    <form  class="searchbar" action="/Posts" method="post">
+        <div class="input-group">
+            <input id="searching" name="searching" type="text" class="form-control" placeholder="Search">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit" value="Search">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+
 @if (@ViewBag.Category != null)
 {
-    <h2>@ViewBag.Category.CategoryName</h2>
+    <h2 class="text-center">@ViewBag.Category.CategoryName</h2>
 }
 else
 {
-    <h2>@ViewBag.Title</h2>
+
 }
 <br />
-@if (User.IsInRole("Admin") && @ViewBag.Category != null)
+
+@if (false)
 {
-    <a class="btn btn-primary" href="/Categories/Edit/@ViewBag.Category.CategoryId">Edit Category</a>
+    <a class="btn btn-primary" href="/Posts/New">Add Post</a>
     <br />
     <br />
 }
-<a class="btn btn-primary" href="/Posts/New">Add Post</a>
-<br />
-<br />
+
 @foreach (DAWProject.Models.Post post in ViewBag.Posts)
 {
-    <a href="/Posts/Show/@post.PostId">
+    <a href="/Posts/Show/@post.PostId" class="post">
         <div class="panel panel-default">
 
             @Html.Partial("PostInfo", post)
 
         </div>
     </a>
+    ViewBag.Count += 1;
+}
+@if (ViewBag.Count == 0)
+{
+    <h2 class="text-center">No matching results</h2>
+}
+@if (User.IsInRole("Admin") && @ViewBag.Category != null)
+{
+    <a class="btn btn-primary" href="/Categories/Edit/@ViewBag.Category.CategoryId">Edit Category</a>
+    <br />
+    <br />
 }

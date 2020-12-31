@@ -10,6 +10,9 @@ a{
     text-decoration: none;
 }
 
+a:hover{
+    text-decoration:none;
+}
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -42,26 +45,26 @@ textarea {
     border-bottom: 1px inset #ffda79;
 }
 
-    .navbar a {
-        color: #ffda79;
-    }
+.navbar a {
+    color: #ffda79;
+}
 
-        .navbar a:hover {
-            color: #ccae62;
-            background-color: transparent;
-        }
+.navbar a:hover {
+    color: #ccae62;
+    background-color: transparent;
+}
 
-    .navbar li {
-        background-color: transparent;
-    }
+.navbar li {
+    background-color: transparent;
+}
 
-        .navbar li a:hover {
-            background-color: transparent;
-        }
+.navbar li a:hover {
+    background-color: transparent;
+}
 
-    .navbar a:hover {
-        background-color: transparent;
-    }
+.navbar a:hover {
+    background-color: transparent;
+}
 
 .glyphicon {
     color: #ffda79;
@@ -154,7 +157,9 @@ div, .font-montserrat.truncate, .font-montserrat, .truncate{
     box-sizing: border-box;
     text-decoration: none;
     -webkit-filter: brightness(100%);
+    -webkit-transition: all 0.5s ease;
     font-family: 'Audiowide', cursive;
+    border-radius: 50px;
 }
 
 .allcategorybox {
@@ -167,12 +172,14 @@ div, .font-montserrat.truncate, .font-montserrat, .truncate{
     box-sizing: border-box;
     text-decoration: none;
     -webkit-filter: brightness(100%);
+    -webkit-transition: all 0.5s ease;
     font-size: 300%;
     text-decoration: none;
     color: #ffda79;
     text-align: center;
     background-size: 100%;
     font-family: 'Audiowide', cursive;
+    border-radius: 50px;
 }
 
 .categorybox h1 {
@@ -193,3 +200,36 @@ div, .font-montserrat.truncate, .font-montserrat, .truncate{
     -ms-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
+
+.post .panel {
+    -webkit-filter: brightness(100%);
+    -webkit-transition: all 0.5s ease;
+}
+
+.post .panel:hover{
+    text-decoration: none;
+    -webkit-filter: brightness(50%);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.searchbar {
+    width: 25%;
+    justify-content: center;
+    display: block;
+    margin: 10px auto;
+}
+
+.searchbar .input-group {
+    width: 100%;
+}
+
+    .searchbar .input-group input {
+        width: 100%;
+        background-color: #474787;
+        color: #ffda79;
+        border: 1px solid #ffda79
+    }
