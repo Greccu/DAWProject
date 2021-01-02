@@ -233,3 +233,55 @@ div, .font-montserrat.truncate, .font-montserrat, .truncate{
         color: #ffda79;
         border: 1px solid #ffda79
     }
+.sortdropdown {
+    float: right;
+    overflow: hidden;
+}
+
+    .sortdropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: #ffda79;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit; /* Important for vertical align on mobile phones */
+        margin: 0; /* Important for vertical align on mobile phones */
+    }
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: none;
+    min-width: 105px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        float: none;
+        color: #706fd3;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        background-color: #40407a;
+        text-align: center;
+        border: 1px solid #ffb142;
+        border-radius: 20px;
+        margin-bottom: 2px;
+    }
+
+.sortdropdown:hover .dropdown-content {
+    display: block;
+}
+
+.sortdropdown:hover {
+    background-color: #40407a;
+}
+
+    .dropdown-content a:hover {
+        background-color: #2c2c54;
+        border-radius: 20px;
+    }

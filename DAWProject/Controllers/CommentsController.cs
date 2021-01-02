@@ -84,7 +84,7 @@ namespace DAWProject.Controllers
                     return RedirectToAction("Show", "Posts", new { id = comm.PostId });
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return View(requestComment);
             }

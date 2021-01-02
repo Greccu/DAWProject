@@ -17,7 +17,7 @@ namespace DAWProject.Controllers
         {
          
                 var posts = from po in db.Posts.Include("User").Include("Category")
-                            where ((id == null)||(po.CategoryId == id)) &&(searching == null || po.Content.Contains(searching) || po.Title.Contains(searching))
+                            where ((id == null)||(po.CategoryId == id)) && (searching == null || po.Content.Contains(searching) || po.Title.Contains(searching) || po.Comments.Any(c => c.Content.Contains(searching))) 
                             select po;
                 if (TempData.ContainsKey("message"))
                 {
@@ -25,21 +25,34 @@ namespace DAWProject.Controllers
                 }
                 switch (sortOrder)
                 {
-                    case "new":
-                        posts = posts.OrderByDescending(p => p.CreatedAt);
-                        break;
                     case "old":
                         posts = posts.OrderBy(p => p.CreatedAt);
                         break;
                     case "categ":
                         posts = posts.OrderBy(p => p.Category.CategoryName);
                         break;
+                    case "popular":
+                        posts = posts.OrderByDescending(p => p.Comments.Count());
+                        break;
                     default:
+                        posts = posts.OrderByDescending(p => p.CreatedAt);
                         break;
 
                 }
                 ViewBag.Posts = posts;
-
+                ViewBag.Count = 0;
+                ViewBag.Category = null;
+                ViewBag.CurrentSort = sortOrder;
+                ViewBag.CurrentSearch = searching;
+                if (id!=null)
+                {
+                    ViewBag.Category = db.Categories.Find(id);
+                    ViewBag.CategoryId = ViewBag.Category.CategoryId;
+                }
+                else
+                {
+                    ViewBag.CategoryId = "all";
+                }
            
             return View();
         }
@@ -89,7 +102,7 @@ namespace DAWProject.Controllers
 
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
                 Post p = db.Posts.Find(comm.PostId);
                 SetAccessRights();
@@ -103,11 +116,13 @@ namespace DAWProject.Controllers
         [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult New()
         {
-            Post post = new Post();
-            //preluam lista de categorii
-            post.Categ = GetAllCategories();
+            Post post = new Post
+            {
+                //preluam lista de categorii
+                Categ = GetAllCategories(),
 
-            post.UserId = User.Identity.GetUserId();
+                UserId = User.Identity.GetUserId()
+            };
             return View(post);
         }
   
@@ -132,7 +147,7 @@ namespace DAWProject.Controllers
                     return View(post);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //ViewBag.ErrorMessage = e.Message;
                 post.Categ = GetAllCategories();
@@ -186,7 +201,7 @@ User.IsInRole("Admin"))
                     return View(requestPost);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 requestPost.Categ = GetAllCategories();
                 return View(requestPost);

@@ -7,17 +7,31 @@
 }
 
 
-    <form  class="searchbar" action="/Posts" method="post">
-        <div class="input-group">
-            <input id="searching" name="searching" type="text" class="form-control" placeholder="Search">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit" value="Search">
-                    <i class="glyphicon glyphicon-search"></i>
-                </button>
-            </div>
+<form class="searchbar" action="/Posts/Index/@ViewBag.CategoryId" method="post">
+    <div class="input-group">
+        <input id="searching" name="searching" type="text" class="form-control" placeholder="Search">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit" value="Search">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
         </div>
-    </form>
+    </div>
+</form>
 
+<div class="sortdropdown">
+    <button class="dropbtn">
+        Sort Posts
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+        <a href="/Posts/Index/@ViewBag.CategoryId/new/@ViewBag.CurrentSearch">new</a>
+        <a href="/Posts/Index/@ViewBag.CategoryId/old/@ViewBag.CurrentSearch">old</a>
+        <a href="/Posts/Index/@ViewBag.CategoryId/categ/@ViewBag.CurrentSearch">category</a>
+        <a href="/Posts/Index/@ViewBag.CategoryId/popular/@ViewBag.CurrentSearch">popular</a>
+    </div>
+</div>
+<br />
+<br />
 @if (@ViewBag.Category != null)
 {
     <h2 class="text-center">@ViewBag.Category.CategoryName</h2>
@@ -34,6 +48,7 @@ else
     <br />
     <br />
 }
+
 
 @foreach (DAWProject.Models.Post post in ViewBag.Posts)
 {

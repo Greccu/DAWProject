@@ -15,10 +15,12 @@ namespace DAWProject
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                url: "{controller}/{action}/{id}/{sortOrder}/{searching}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, sortOrder = UrlParameter.Optional, searching = UrlParameter.Optional },
                 namespaces: new[] {"DAWProject.Controllers"}
             );
+
+
         }
     }
 }
