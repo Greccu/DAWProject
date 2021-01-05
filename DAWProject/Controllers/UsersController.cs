@@ -90,11 +90,11 @@ namespace DAWProject.Controllers
                         var selectedRole = db.Roles.Find(HttpContext.Request.Params.Get("newRole"));
                         UserManager.AddToRole(id, selectedRole.Name);
                     }
-                    
+
 
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
+                return Redirect("/Users/Show/" + id);
             }
             catch (Exception e)
             {

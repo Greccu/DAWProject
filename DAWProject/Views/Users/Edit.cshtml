@@ -17,14 +17,16 @@
 
     <br />
 
-    <i class="glyphicon glyphicon-user"></i>
-    @Html.Label("UserName", "Username", new { @class = "" })
+    <i class="glyphicon glyphicon-envelope"></i>
+    @Html.Label("UserName", "UserName", new { @class = "" })
 
     <br />
 
     @Html.EditorFor(m => m.UserName)
-
+    @Html.ValidationMessageFor(m => m.UserName, "", new {
+@class = "text-danger " })
     <br /><br />
+
 
     <i class="glyphicon glyphicon-envelope"></i>
     @Html.Label("Email", "Email", new { @class = "" })
@@ -32,15 +34,16 @@
     <br />
 
     @Html.EditorFor(m => m.Email)
-
+    @Html.ValidationMessageFor(m => m.Email, "", new {
+@class = "text-danger " })
     <br /><br />
 
     <i class="glyphicon glyphicon-phone"></i>
     @Html.Label("PhoneNumber", "Phone Number")
-
     <br />
-
     @Html.EditorFor(m => m.PhoneNumber)
+    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new {
+@class = "text-danger " })
     <br /><br />
     if (User.IsInRole("Admin"))
     {

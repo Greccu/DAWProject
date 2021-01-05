@@ -17,14 +17,14 @@
     @Html.Label("Title", "Title")
     <br />
     @Html.EditorFor(m => m.Title)
-    @Html.ValidationMessageFor(m => m.Title, "You must put a title for this post!", new {
+    @Html.ValidationMessageFor(m => m.Title, "", new {
 @class = "text-danger " })
     <br /><br />
 
     @Html.Label("Content", "Content")
     <br />
     @Html.TextArea("Content", Model.Content, new { @class = "form-control summernote" })
-    @Html.ValidationMessageFor(m => m.Content, "Write something in your post.", new {
+    @Html.ValidationMessageFor(m => m.Content, "", new {
 @class = "text-danger " })
     <br /><br />
     @Html.HiddenFor(m => m.CreatedAt)
@@ -32,7 +32,7 @@
     @Html.DropDownListFor(m => m.CategoryId,
                 new SelectList(Model.Categ, "Value", "Text"),
                 "Select Category", new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.Category, "What is your post about?", new {
+    @Html.ValidationMessageFor(m => m.Category, "", new {
 @class = "text-danger " })
     <br />
     <button class="btn btn-sm btn-success" type="submit">Edit</button>

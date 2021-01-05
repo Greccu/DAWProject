@@ -23,8 +23,8 @@
          @if (@Model.PhoneNumber != null)
          {
              <i class="glyphicon glyphicon-phone"></i>@:Phone Number:<span class="label label-default">@Model.PhoneNumber</span>
+             <br />
          }
-
      </div>
 
      @if ((string)Model.Id == ViewBag.currentUser || User.IsInRole("Admin"))
