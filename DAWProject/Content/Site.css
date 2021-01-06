@@ -279,6 +279,7 @@ div, .font-montserrat.truncate, .font-montserrat, .truncate{
 
 .sortdropdown:hover {
     background-color: #40407a;
+    border-radius: 20px;
 }
 
 .dropdown-content a:hover {

@@ -20,6 +20,7 @@ namespace DAWProject.Models
         public string Title { get; set; }
         [Required(ErrorMessage = "Write something in the post!")]
         [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string Content { get; set; }
 
         public DateTime CreatedAt { get; set; }

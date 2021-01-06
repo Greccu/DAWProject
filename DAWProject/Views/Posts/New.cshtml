@@ -5,31 +5,38 @@
 <br />
 
 <h2>Add Post</h2>
-<form method="post" action="/Posts/New">
+@using (Html.BeginForm(actionName: "New", controllerName: "Posts"))
+{
     @Html.Label("Title", "Post Title")
     <br />
     @Html.TextBox("Title", null, new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.Title, null, new {
-@class = "text-danger " })
+    @Html.ValidationMessageFor(m => m.Title, null, new
+{
+    @class = "text-danger "
+})
 
     <br /><br />
 
     @Html.Label("Content", "Conent")
     <br />
-    @Html.TextArea("Content", null, new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.Content, null, new {
-@class = "text-danger " })
+    @Html.TextArea("Content", "", new { @class = "form-control summernote" })
+    @Html.ValidationMessageFor(m => m.Content, null, new
+{
+    @class = "text-danger "
+})
     <br /><br />
     <label>Select Category</label>
     @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categ, "Value",
-    "Text"),
-    "Select Category", new { @class = "form-control" })
+        "Text"),
+        "Select Category", new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
-    @Html.ValidationMessageFor(m => m.Category, "", new {
-@class = "text-danger " })
+    @Html.ValidationMessageFor(m => m.Category, "", new
+{
+    @class = "text-danger "
+})
     <br /><br />
     <button class="btn btn-sm btn-success" type="submit">Add Post</button>
-</form>
+}
 
 
 
