@@ -1,4 +1,4 @@
-# Open Discossion Application
+# Open Discussion Web Application
 ## ASP.NET MVC 
 
 Co-developed a web application, a “Open discussion” platform. You can create an account, post and comment in the different categories out there.
