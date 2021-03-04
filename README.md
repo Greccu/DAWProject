@@ -5,4 +5,4 @@ Co-developed a web application, a “Open discussion” platform. You can create
 
 ## Technologies used: ASP.NET MVC5, Entity Framework, HTML, CSS, Bootstrap
 
-![ezgif-3-87b1266ba69c](https://user-images.githubusercontent.com/56735903/110000157-a887e780-7d1b-11eb-9ac7-b0fb15b012fa.gif)
+![ezgif-3-5079d05d7e95](https://user-images.githubusercontent.com/56735903/110002135-bfc7d480-7d1d-11eb-815f-9b6f80d11a95.gif)
